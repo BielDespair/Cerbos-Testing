@@ -1,0 +1,21 @@
+apiVersion: "api.cerbos.dev/v1"
+principalPolicy:
+  version: "default"
+  principal: "older_brother"
+  rules:
+    - resource: cookie_jar
+      actions:
+        - name: open_jar
+          action: "open"
+          effect: EFFECT_ALLOW
+        - name: refill_jar
+          action: "refill"
+          effect: EFFECT_ALLOW
+    - resource: biscuit_jar
+      actions:
+        - name: open_jar
+          action: "open"
+          effect: EFFECT_ALLOW
+        - name: refill_jar
+          action: "refill"
+          effect: EFFECT_ALLOW
