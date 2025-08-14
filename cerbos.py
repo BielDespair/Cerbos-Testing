@@ -24,4 +24,3 @@ class CerbosClient:
         data = r.json()
 
         return r.json()
-        return {a: (eff == "EFFECT_ALLOW") for a, eff in data.get("actions", {}).items()}

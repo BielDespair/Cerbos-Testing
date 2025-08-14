@@ -9,18 +9,22 @@ class JWTHandler:
         self.public_key = self._load_key("./.ssh/app.pub")
 
 
-    def extract_claims(self, token: str) -> str:
+    def decode_token(self, token: str) -> dict:
         header: dict = jwt.get_unverified_header(token)
         
-
-        decoded_token: str = jwt.decode(token, self.public_key, header['alg'])
+        decoded_token: dict = jwt.decode(token, self.public_key, [header['alg']])
+        
         return decoded_token
 
-    def generate(self, claims: dict, expiration_minutes: int = 120) -> str:
-        payload=claims.copy()
+    def generate_token(self, user_id: str, roles: list[str], expiration_minutes: int = 120) -> str:
 
         expiration: datetime = datetime.now(timezone.utc) + timedelta(minutes=expiration_minutes)
-        payload["exp"] = expiration
+
+        payload = {
+            "sub":user_id,
+            "roles": roles,
+            "exp":expiration
+        }
 
         token: str = jwt.encode(payload, self.private_key, self.algorithm)
         return token
