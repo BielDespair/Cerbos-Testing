@@ -1,0 +1,61 @@
+name: CookieJarTestSuite
+description: Tests for verifying the cookie jar policy.
+
+principals:
+  Mike:
+    id: child1
+    roles:
+      - child
+
+  Geanne:
+    id: mom1
+    roles:
+      - mom
+
+  Steve:
+    id: dad1
+    roles:
+      - dad
+
+resources:
+  jar:
+    kind: cookie_jar
+    id: jar1
+
+tests:
+  - name: Mom can do everything with the jar. Mike can't do anything. Steve also can't access Mom's cookie jar.
+    input:
+      principals:
+        - Mike
+        - Geanne
+        - Steve
+
+      resources:
+        - jar
+
+      actions:
+        - open
+        - refill
+        - steal
+
+    expected:
+      - principal: Mike
+        resource: jar
+        actions:
+          open: EFFECT_DENY
+          refill: EFFECT_DENY
+          steal: EFFECT_ALLOW
+
+      - principal: Geanne
+        resource: jar
+        actions:
+          open: EFFECT_ALLOW
+          refill: EFFECT_ALLOW
+          steal: EFFECT_ALLOW
+
+      - principal: Steve
+        resource: jar
+        actions:
+          open: EFFECT_DENY
+          refill: EFFECT_DENY
+          steal: EFFECT_DENY

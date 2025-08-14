@@ -1,0 +1,17 @@
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+  version: "default"
+  resource: "biscuit_jar"
+  rules:
+    - actions:
+        - "*"
+      effect: EFFECT_DENY
+      roles:
+        - child
+
+    - actions:
+        - open
+        - refill
+      effect: EFFECT_ALLOW
+      roles:
+        - dad
