@@ -6,9 +6,13 @@ resourcePolicy:
     - actions:
         - open
         - refill
-      effect: EFFECT_DENY
+      effect: EFFECT_ALLOW
+      condition:
+        match:
+          expr: request.principal.attr.grounded == false
       roles:
         - child
+
     - actions:
         - steal
       effect: EFFECT_ALLOW
@@ -19,4 +23,4 @@ resourcePolicy:
         - "*"
       effect: EFFECT_ALLOW
       roles:
-        - mom
+        - parent

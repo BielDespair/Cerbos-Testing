@@ -2,6 +2,8 @@ apiVersion: api.cerbos.dev/v1
 resourcePolicy:
   version: "default"
   resource: "biscuit_jar"
+  importDerivedRoles:
+    - parent_derived_roles
   rules:
     - actions:
         - "*"
@@ -13,5 +15,5 @@ resourcePolicy:
         - open
         - refill
       effect: EFFECT_ALLOW
-      roles:
+      derivedRoles:
         - dad

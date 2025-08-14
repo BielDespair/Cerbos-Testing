@@ -26,7 +26,7 @@ def prepare_cerbos_request(token: dict, action: str, resource_kind: str, resourc
             "resource": {
                 "kind": "cookie_jar",
                 "id": "cookie_jar1",
-                "attr": {}
+                "attr": {"grounded":False}
             }
         }
     ]
@@ -69,7 +69,7 @@ def get_cookie(request: Request) -> dict:
     principal = {
         "id":token["sub"],
         "roles": token["roles"],
-        "attr":{}
+        "attr":{"grounded":False}
     }
     resources = [
         {

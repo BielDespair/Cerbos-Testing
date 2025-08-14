@@ -1,0 +1,17 @@
+---
+apiVersion: "api.cerbos.dev/v1"
+description: |-
+  Dynamic parent role
+derivedRoles:
+  name: parent_derived_roles
+  definitions:
+    - name: dad
+      parentRoles: ["parent"]
+      condition:
+        match:
+          expr: request.principal.id == "dad"
+    - name: mom
+      parentRoles: ["parent"]
+      condition:
+        match:
+          expr: request.principal.id == "mom"
