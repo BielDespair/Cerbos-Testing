@@ -1,0 +1,22 @@
+server:
+  httpListenAddr: ":3592"
+  grpcListenAddr: ":3593"
+  adminAPI:
+    adminCredentials:
+      passwordHash: JDJiJDEyJHU5SlNQNnVrRjlSd3E4c212aXNSVnU1dDVMRmpOVkE4TzJjdWVoTWdkZmlFcDVkcUg4OExL
+      username: cerbos
+    enabled: true
+
+engine:
+  defaultPolicyVersion: "default"
+
+auxData:
+  jwt:
+    disableVerification: true
+storage:
+  driver: "disk"
+  disk:
+    directory: "$PWD"
+    watchForChanges: true
+schema:
+  enforcement: reject
